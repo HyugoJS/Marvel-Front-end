@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LoadingIcons from "react-loading-icons";
 import "../singleChar/SingleChar.css";
 
 const SingleComic = () => {
@@ -29,7 +30,9 @@ const SingleComic = () => {
     fetchData();
   }, [params.id]);
   return isLoading ? (
-    <p>En chargement</p>
+    <div className="loading-icon">
+      <LoadingIcons.Puff />
+    </div>
   ) : data ? (
     <div className="char-presentation">
       <h1>{data.title}</h1>

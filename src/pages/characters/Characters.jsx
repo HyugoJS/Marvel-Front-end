@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import LoadingIcons from "react-loading-icons";
 import "./Characters.css";
 
 const Characters = ({ name, setName }) => {
@@ -31,7 +32,9 @@ const Characters = ({ name, setName }) => {
     fetchData();
   }, [page, name]);
   return isLoading ? (
-    <p>En chargement</p>
+    <div className="loading-icon">
+      <LoadingIcons.Puff />
+    </div>
   ) : (
     <>
       <div className="searchbar">

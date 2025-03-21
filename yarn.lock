@@ -1107,6 +1107,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+js-cookie@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.5.tgz#0b7e2fd0c01552c58ba86e0841f94dc2557dcdbc"
+  integrity sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==
+
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -1300,6 +1305,16 @@ react-dom@^19.0.0:
   integrity sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==
   dependencies:
     scheduler "^0.25.0"
+
+react-loading-icons@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-loading-icons/-/react-loading-icons-1.1.0.tgz#c37f2472936ab93c6a7f43c0a2c2fe8efc3ff7c8"
+  integrity sha512-Y9eZ6HAufmUd8DIQd6rFrx5Bt/oDlTM9Nsjvf8YpajTa3dI8cLNU8jUN5z7KTANU+Yd6/KJuBjxVlrU2dMw33g==
+
+react-loading-indicators@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-loading-indicators/-/react-loading-indicators-1.0.0.tgz#f296fbcb397ed5c03a57a9a6abc92c63abfc9c46"
+  integrity sha512-0xI07RxuT62NcdKB+6pphR++cnkk9iu8DO0H9kSKE9X71oY/M+gkqTaCjoYA1T3UYrRKdm52QvnwY/YTAU5/cg==
 
 react-refresh@^0.14.2:
   version "0.14.2"

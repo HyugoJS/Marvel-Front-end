@@ -4,7 +4,7 @@
 body {
   font-family: Acme, sans-serif;
   color: white;
-  background-color: black;
+  background-color: #222222;
 }
 .container {
   width: 1300px;
@@ -39,6 +39,60 @@ header {
   box-shadow: 7px 8px 11px 5px darkred;
 }
 .header-links a:hover {
+  background-color: #ddde1a;
+  text-decoration: underline;
+  color: black;
+  -webkit-box-shadow: 7px 8px 11px 5px rgb(101, 103, 0);
+  -moz-box-shadow: 7px 8px 11px 5px rgb(101, 103, 0);
+  box-shadow: 7px 8px 11px 5px rgb(101, 103, 0);
+}
+.hero-div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.hero-div img {
+  width: 40%;
+  height: 1000px;
+  object-fit: cover;
+}
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  width: 50%;
+  padding: 100px;
+}
+.hero-text h1 {
+  font-size: 84px;
+}
+.hero-text p {
+  font-size: 32px;
+  color: gray;
+  font-style: italic;
+}
+.loading-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-buttons button {
+  display: flex;
+  gap: 60px;
+  font-size: 20px;
+  align-items: center;
+  margin-right: 100px;
+}
+.header-buttons button {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  background-color: crimson;
+  -webkit-box-shadow: 7px 8px 11px 5px darkred;
+  -moz-box-shadow: 7px 8px 11px 5px darkred;
+  box-shadow: 7px 8px 11px 5px darkred;
+}
+.header-buttons button:hover {
   background-color: #ddde1a;
   text-decoration: underline;
   color: black;
