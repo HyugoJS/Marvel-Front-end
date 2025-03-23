@@ -3,13 +3,54 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LoadingIcons from "react-loading-icons";
+import Cookies from "js-cookie";
+import { FaHeart } from "react-icons/fa";
+import { FaHeartBroken } from "react-icons/fa";
 import "./Characters.css";
 
-const Characters = ({ name, setName }) => {
+const Characters = ({ name, setName, favorites, setFavorites }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1); // Gère la page actuelle
   const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
+
+  const handleFavorites = async (characterId) => {
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        alert("You must be connected to add favorites.");
+        return;
+      }
+      const response = await axios.post(
+        `http://localhost:3000/favorite/character/${characterId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // console.log("ici=>", response.data.favorites);
+      setFavorites(response.data.favorites);
+      alert("Ajouté aux favoris !");
+    } catch (error) {}
+  };
+  const deleteFavorites = async (characterId) => {
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        alert("You must be connected to delete favorites.");
+        return;
+      }
+      const response = await axios.delete(
+        `http://localhost:3000/favorite/character/${characterId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // console.log("ici=>", response.data.favorites);
+      setFavorites(response.data.favorites);
+      alert("Supprimé des favoris !");
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +62,7 @@ const Characters = ({ name, setName }) => {
         const response = await axios.get(
           `http://localhost:3000/characters?page=${page}${filters}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data.characters);
         setTotalPages(response.data.totalPages);
         setIsLoading(false);
@@ -52,17 +93,25 @@ const Characters = ({ name, setName }) => {
       <div className="char-container">
         {data.map((char, index) => {
           return (
-            <>
-              <Link
-                to={`/characters/${char.id}`}
-                key={char.id}
-                className="individual-char"
-              >
+            <Link
+              to={`/characters/${char.id}`}
+              key={index}
+              className="individual-char"
+            >
+              <div className="title-buttons">
                 <h2>{char.name}</h2>
-                <img src={char.image} alt="photo du perso" />
-                <p>{char.description}</p>
-              </Link>
-            </>
+                <div className="buttons-div">
+                  <button onClick={() => handleFavorites(char.id)}>
+                    <FaHeart />
+                  </button>
+                  <button onClick={() => deleteFavorites(char.id)}>
+                    <FaHeartBroken />
+                  </button>
+                </div>
+              </div>
+              <img src={char.image} alt="photo du perso" />
+              <p>{char.description}</p>
+            </Link>
           );
         })}
       </div>

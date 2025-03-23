@@ -54,7 +54,9 @@ const Login = ({ userToken, setUserToken }) => {
         />
 
         <input type="submit" value="Se connecter" className="submit-button" />
-        <Link to={"/signup"}>Inscrivez-vous</Link>
+        <Link className="form-link" to={"/signup"}>
+          Inscrivez-vous
+        </Link>
       </div>
     </form>
   );

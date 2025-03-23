@@ -3,13 +3,57 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LoadingIcons from "react-loading-icons";
+import Cookies from "js-cookie";
+import { FaHeart } from "react-icons/fa";
+import { FaHeartBroken } from "react-icons/fa";
 import "./Comics.css";
 
-const Comics = ({ title, setTitle }) => {
+const Comics = ({ title, setTitle, favorites, setFavorites }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1); // Gère la page actuelle
   const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
+
+  const handleFavorites = async (comicId) => {
+    // console.log("Ajout aux favoris :", comicId);
+
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        alert("You must be connected to add favorites.");
+        return;
+      }
+      const response = await axios.post(
+        `http://localhost:3000/favorite/comics/${comicId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // console.log("ici=>", response.data.favorites);
+      // console.log("Réponse de l'API :", response.data);
+      setFavorites(response.data.favorites);
+      alert("Ajouté aux favoris !");
+    } catch (error) {}
+  };
+  const deleteFavorites = async (comicId) => {
+    try {
+      const token = Cookies.get("token");
+      if (!token) {
+        alert("You must be connected to delete favorites.");
+        return;
+      }
+      const response = await axios.delete(
+        `http://localhost:3000/favorite/comics/${comicId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // console.log("ici=>", response.data.favorites);
+      setFavorites(response.data.favorites);
+      alert("Supprimé des favoris !");
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,17 +96,26 @@ const Comics = ({ title, setTitle }) => {
       <div className="comic-container">
         {data.map((comic, index) => {
           return (
-            <>
-              <Link
-                to={`/comics/${comic.id}`}
-                key={comic.id}
-                className="individual-comic"
-              >
+            <Link
+              to={`/comics/${comic.id}`}
+              key={index}
+              className="individual-comic"
+            >
+              <div className="title-buttons">
                 <h2>{comic.title}</h2>
-                <img src={comic.image} alt="photo du comic" />
-                <p>{comic.description}</p>
-              </Link>
-            </>
+                <div className="buttons-div">
+                  <button onClick={() => handleFavorites(comic.id)}>
+                    <FaHeart />
+                  </button>
+                  <button onClick={() => deleteFavorites(comic.id)}>
+                    <FaHeartBroken />
+                  </button>
+                </div>
+              </div>
+
+              <img src={comic.image} alt="photo du comic" />
+              <p>{comic.description}</p>
+            </Link>
           );
         })}
       </div>

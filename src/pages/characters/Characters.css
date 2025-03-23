@@ -44,6 +44,21 @@
   object-fit: cover;
   border-radius: 10px;
 }
+.individual-char button {
+  background-color: white;
+  color: crimson;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.title-buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.buttons-div {
+  display: flex;
+}
 .pagination {
   display: flex;
   justify-content: center;

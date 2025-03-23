@@ -62,3 +62,18 @@ input {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+.individual-comic button {
+  background-color: white;
+  color: crimson;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.title-buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.buttons-div {
+  display: flex;
+}

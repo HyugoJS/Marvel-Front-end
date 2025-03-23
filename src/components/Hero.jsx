@@ -9,7 +9,7 @@ const Hero = () => {
         <p>
           Dive into the adventures of your favorites Marvel characters, find
           them in the characters section up top ! You will find all the comics
-          linked to your character by clicking him. You will either find all the
+          linked to your character by clicking him. You will also find all the
           comics in the comics section. Explore the vast Marvel Universe, where
           heroes, villains, and cosmic beings collide in epic battles and
           legendary stories. From the streets of New York with Spider-Man to the

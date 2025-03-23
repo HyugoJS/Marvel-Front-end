@@ -16,8 +16,11 @@ const Signup = ({ userToken, setUserToken }) => {
     password: "",
     favorites: [""],
   });
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrorMessage("");
+
     try {
       const response = await axios.post(
         "http://localhost:3000/user/signup",
@@ -30,7 +33,12 @@ const Signup = ({ userToken, setUserToken }) => {
         navigate("/");
       }
     } catch (error) {
-      console.log(error.response);
+      console.log("ici=>", error.response);
+      if (error.response && error.response.status === 409) {
+        setErrorMessage("This email is already taken.");
+      } else {
+        setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+      }
     }
   };
   const handleUsername = (event) => {
@@ -53,35 +61,41 @@ const Signup = ({ userToken, setUserToken }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>S'inscrire</h1>
-      <div>
-        <input
-          type="text"
-          name="username"
-          placeholder="Nom d'utilisateur"
-          onChange={handleUsername}
-          value={data.username}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleEmail}
-          value={data.email}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          onChange={handlePassword}
-          value={data.password}
-        />
+    <div className="form-wrapper">
+      <form onSubmit={handleSubmit}>
+        <h1>S'inscrire</h1>
+        <div>
+          <input
+            type="text"
+            name="username"
+            placeholder="Nom d'utilisateur"
+            onChange={handleUsername}
+            value={data.username}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleEmail}
+            value={data.email}
+          />
 
-        <input type="submit" value="S'inscrire" className="submit-button" />
-        <Link to={"/login"}>Connectez-vous</Link>
-      </div>
-    </form>
+          <input
+            type="password"
+            name="password"
+            placeholder="Mot de passe"
+            onChange={handlePassword}
+            value={data.password}
+          />
+
+          <input type="submit" value="S'inscrire" className="submit-button" />
+          <Link className="form-link" to={"/login"}>
+            Connectez-vous
+          </Link>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </div>
+      </form>
+    </div>
   );
 };
 export default Signup;

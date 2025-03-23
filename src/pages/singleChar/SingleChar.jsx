@@ -24,7 +24,7 @@ const SingleChar = () => {
         const response2 = await axios.get(
           "http://localhost:3000/character/" + params.id
         );
-        console.log("ici=>", response2.data);
+        // console.log("ici=>", response2.data);
         setLinkedComics(response2.data);
         setIsLoading(false);
       } catch (error) {
@@ -46,16 +46,14 @@ const SingleChar = () => {
       <div className="carrousel-comics">
         {linkedComics.comics.map((comic, index) => {
           return (
-            <>
-              <div key={index} className="test">
-                <h3>{comic.title}</h3>
-                <img
-                  src={comic.thumbnail.path + "." + comic.thumbnail.extension}
-                  alt="photo du comic"
-                />
-                <p>{comic.description}</p>
-              </div>
-            </>
+            <div key={index} className="test">
+              <h3>{comic.title}</h3>
+              <img
+                src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                alt="photo du comic"
+              />
+              <p>{comic.description}</p>
+            </div>
           );
         })}
       </div>

@@ -1,39 +1,16 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import LoadingIcons from "react-loading-icons";
-import Cookies from "js-cookie";
+import FavoritesList from "./FavoritesList";
+import "./Favorites.css";
 
-const Favorites = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/favorites`);
-
-        // console.log(response.data);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchData();
-  }, []);
-  return isLoading ? (
-    <div className="loading-icon">
-      <LoadingIcons.Puff />
+const Favorites = ({ userToken, favorites, setFavorites }) => {
+  return (
+    <div>
+      <FavoritesList
+        token={userToken}
+        favorites={favorites}
+        setFavorites={setFavorites}
+      />
     </div>
-  ) : (
-    <>
-      <div>
-        <p>Favoris</p>
-      </div>
-    </>
   );
 };
+
 export default Favorites;
