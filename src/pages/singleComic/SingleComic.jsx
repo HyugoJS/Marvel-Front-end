@@ -16,7 +16,7 @@ const SingleComic = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/comics/" + params.id //remplacer le :id par l'id qu'on choppe en params
+          "https://site--marvel-back--fc7nwyvb2r4r.code.run/comics/" + params.id //remplacer le :id par l'id qu'on choppe en params
         );
         // console.log("ici=>" + response.data);
         setData(response.data);

@@ -22,7 +22,7 @@ const Characters = ({ name, setName, favorites, setFavorites }) => {
         return;
       }
       const response = await axios.post(
-        `http://localhost:3000/favorite/character/${characterId}`,
+        `https://site--marvel-back--fc7nwyvb2r4r.code.run/favorite/character/${characterId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -41,7 +41,7 @@ const Characters = ({ name, setName, favorites, setFavorites }) => {
         return;
       }
       const response = await axios.delete(
-        `http://localhost:3000/favorite/character/${characterId}`,
+        `https://site--marvel-back--fc7nwyvb2r4r.code.run/favorite/character/${characterId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -60,7 +60,7 @@ const Characters = ({ name, setName, favorites, setFavorites }) => {
           filters += "&name=" + name;
         }
         const response = await axios.get(
-          `http://localhost:3000/characters?page=${page}${filters}`
+          `https://site--marvel-back--fc7nwyvb2r4r.code.run/characters?page=${page}${filters}`
         );
         // console.log(response.data);
         setData(response.data.characters);

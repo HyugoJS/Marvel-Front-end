@@ -17,12 +17,14 @@ const SingleChar = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/characters/" + params.id //remplacer le :id par l'id qu'on choppe en params
+          "https://site--marvel-back--fc7nwyvb2r4r.code.run/characters/" +
+            params.id //remplacer le :id par l'id qu'on choppe en params
         );
         // console.log("ici=>" + response.data);
         setData(response.data);
         const response2 = await axios.get(
-          "http://localhost:3000/character/" + params.id
+          "https://site--marvel-back--fc7nwyvb2r4r.code.run/character/" +
+            params.id
         );
         // console.log("ici=>", response2.data);
         setLinkedComics(response2.data);

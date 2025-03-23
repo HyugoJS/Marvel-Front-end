@@ -9,9 +9,12 @@ const FavoritesList = ({ token, favorites, setFavorites }) => {
     if (token) {
       const fetchFavorites = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/favorites", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const response = await axios.get(
+            "https://site--marvel-back--fc7nwyvb2r4r.code.run/favorites",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
           // console.log("ixi=>", response.data);
 
           setFavorites(response.data.favorites);
